@@ -38,4 +38,7 @@ public class aOrderedList {
     public Comparable get(int index) {
         return oList[index];
     }
+     
+       public void remove(Comparable car) {
+    }
 }
