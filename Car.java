@@ -2,11 +2,14 @@
 package prog01_aorderedlist;
 import java.util.Scanner;
 
+
 /**
  *
  * @author diamond
  */
-public class Car {
+
+
+public class Car implements Comparable<Car> {
     private String make;
     private int year;
     private int price;
