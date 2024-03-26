@@ -18,17 +18,29 @@ class Prog01_aOrderedList {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 String[] parts = line.split(",");
-                if (parts.length >= 4) {
+                if (parts.length >= 3) {
                     String operation = parts[0];
-                    if (operation.equalsIgnoreCase("A")) {
+                    if (operation.equals("A")) {
                         String make = parts[1];
                         int year = Integer.parseInt(parts[2]);
                         int price = Integer.parseInt(parts[3]);
                         Car car = new Car(make, year, price);
-                        orderedList.add((Comparable) car);
-                    } else if (operation.equalsIgnoreCase("D")) {
+                        orderedList.add(car);
+                    } else if (operation.equals("D")) {
+                        while(orderedList.hasNext() ) {
+                            Car curr = (Car)orderedList.next();
+                            Car removal = null;
+                            try {
+                                removal = new Car(parts[1], Integer.parseInt(parts[2]), 0);
+                            } catch(NumberFormatException e) {}
+                            if(removal != null && curr.compareTo(removal) == 0) {
+                                orderedList.remove();
+                            }
+                        }
+
                         // Implement delete operation if needed
                     }
+                    orderedList.reset();
                 }
             }
         } catch (FileNotFoundException e) {
@@ -49,13 +61,7 @@ class Prog01_aOrderedList {
             }
             writer.close();
 
-            // Print the contents of the input file
-            System.out.println("Contents of input file:");
-            printFileContents(getInputFile("Enter input filename: "));
 
-            // Print the contents of the output file
-            System.out.println("Contents of output file:");
-            printFileContents(getInputFile("Enter output filename: "));
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         }
@@ -109,4 +115,5 @@ class Prog01_aOrderedList {
         scanner.close();
     }
 }
+
 
