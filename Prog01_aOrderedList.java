@@ -1,19 +1,12 @@
+import prog01_aorderedlist.Car;
+
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
+class Prog01_aOrderedList {
 
-/**
- *
- * @author diamond
- */
-public class Prog01_aOrderedList {
-
-    /**
-     * @param args the command line arguments
-     */
-    
     public static void main(String[] args) {
         // Create aOrderedList object
         aOrderedList orderedList = new aOrderedList();
@@ -55,6 +48,14 @@ public class Prog01_aOrderedList {
                 writer.println(orderedList.get(i).toString());
             }
             writer.close();
+
+            // Print the contents of the input file
+            System.out.println("Contents of input file:");
+            printFileContents(getInputFile("Enter input filename: "));
+
+            // Print the contents of the output file
+            System.out.println("Contents of output file:");
+            printFileContents(getInputFile("Enter output filename: "));
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         }
@@ -81,7 +82,7 @@ public class Prog01_aOrderedList {
     }
 
     public static PrintWriter getOutputFile(String userPrompt) throws FileNotFoundException {
-         Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         String filename;
         PrintWriter writer = null;
         do {
@@ -100,8 +101,12 @@ public class Prog01_aOrderedList {
         } while (writer == null);
         return writer;
     }
-    }
-    
-    
 
+    public static void printFileContents(Scanner scanner) {
+        while (scanner.hasNextLine()) {
+            System.out.println(scanner.nextLine());
+        }
+        scanner.close();
+    }
+}
 
